@@ -1,0 +1,33 @@
+.pizza-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .pizza-card .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+  
+  .pizza-card .card-title {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+  }
+  
+  .pizza-card .card-text {
+    margin-bottom: 10px;
+  }
+  
+  .pizza-card .btn {
+    font-size: 0.9rem;
+  }
+  
+  .pizza-card .d-flex {
+    justify-content: space-between;
+  }
+  

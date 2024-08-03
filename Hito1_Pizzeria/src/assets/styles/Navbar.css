@@ -1,0 +1,21 @@
+.navbar {
+  background-color: #000000;
+}
+
+.navbar .navbar-brand {
+  color: white;
+  margin-left: 20px;
+}
+
+.navbar .navbar-nav .nav-link {
+  color: white;
+  margin-right: 10px;
+}
+
+.navbar .navbar-text {
+  color: white;
+}
+
+.navbar .nav-item {
+  margin-left: 30px;
+}
