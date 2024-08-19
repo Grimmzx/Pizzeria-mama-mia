@@ -1,33 +1,30 @@
 .pizza-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  .pizza-card .card-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-  }
-  
-  .pizza-card .card-title {
-    font-size: 1.25rem;
-    margin-bottom: 10px;
-  }
-  
-  .pizza-card .card-text {
-    margin-bottom: 10px;
-  }
-  
-  .pizza-card .btn {
-    font-size: 0.9rem;
-  }
-  
-  .pizza-card .d-flex {
-    justify-content: space-between;
-  }
-  
+  border: 1px solid #ffffff;
+}
+
+.pizza-card:hover {
+  transform: scale(1.05);
+}
+
+.pizza-card img {
+  border-radius: 8px 8px 0 0;
+  max-height: 200px;
+  object-fit: cover;
+}
+
+.pizza-card .card-body {
+  padding: 15px;
+}
+
+.pizza-card .card-title {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.pizza-card .card-text {
+  margin-bottom: 10px;
+}
+
+.pizza-card .btn {
+  width: 45%;
+}

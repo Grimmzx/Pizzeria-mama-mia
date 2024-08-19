@@ -1,17 +1,22 @@
 import React from 'react';
 import '../assets/styles/CardPizza.css';
 
-const CardPizza = ({ name, price, ingredients, img }) => {
+const CardPizza = ({ pizza, onAddToCart }) => {
   return (
     <div className="card pizza-card">
-      <img src={img} className="card-img-top" alt={name} />
+      <img src={pizza.img} className="card-img-top" alt={pizza.name} />
       <div className="card-body">
-        <h5 className="card-title">{name}</h5>
-        <p className="card-text"><strong>Ingredientes:</strong> {ingredients.join(", ")}</p>
-        <p className="card-text"><strong>Precio:</strong> ${price.toLocaleString()}</p>
+        <h5 className="card-title">{pizza.name}</h5>
+        <ul>
+          {pizza.ingredients.map((ingredient, index) => (
+            <li key={index}>{ingredient}</li>
+          ))}
+        </ul>
+        <p className="card-text"><strong>Precio:</strong> ${pizza.price.toLocaleString()}</p>
         <div className="d-flex justify-content-between">
-          <a href="#" className="btn btn-primary">Ver más 🍕</a>
-          <a href="#" className="btn btn-secondary">Añadir 🛒</a>
+          <button className="btn btn-primary">Ver más 🍕</button>
+                                                    {/* se agrega  evento */}
+          <button className="btn btn-secondary" onClick={() => onAddToCart(pizza)}>Añadir 🛒</button>
         </div>
       </div>
     </div>

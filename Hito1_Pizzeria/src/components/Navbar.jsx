@@ -1,7 +1,7 @@
 import React from 'react';
 import '../assets/styles/Navbar.css';
 
-const Navbar = ({ onNavigate }) => {
+const Navbar = ({ onNavigate, total }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <a className="navbar-brand" href="#" onClick={() => onNavigate('home')}>Pizzería Mamma Mía!</a>
@@ -19,10 +19,10 @@ const Navbar = ({ onNavigate }) => {
           <li className="nav-item">
             <a className="nav-link" href="#" onClick={() => onNavigate('register')}>🔐 Register</a>
           </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#" onClick={() => onNavigate('cart')}>🛒 Total de carrito :  ${total.toLocaleString()}</a>
+          </li>
         </ul>
-        <span className="navbar-text ml-auto">
-          🛒 Total: $25,000
-        </span>
       </div>
     </nav>
   );
