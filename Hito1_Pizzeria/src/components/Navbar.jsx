@@ -20,7 +20,7 @@ const Navbar = ({ onNavigate, total }) => {
             <a className="nav-link" href="#" onClick={() => onNavigate('register')}>🔐 Register</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#" onClick={() => onNavigate('cart')}>🛒 Total de carrito :  ${total.toLocaleString()}</a>
+            <a className="nav-link" href="#" onClick={() => onNavigate('cart')}>🛒 Total de carrito: ${total ? total.toLocaleString() : '0.00'}</a>
           </li>
         </ul>
       </div>

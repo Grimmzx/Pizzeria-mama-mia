@@ -1,23 +1,32 @@
-import React from 'react';
-import Header from './Header';
-import CardPizza from './CardPizza';
-import { pizzas } from './pizzas';
+import React, { useEffect, useState } from 'react';
+import '../assets/styles/Home.css'
 
-const Home = ({ handleAddToCart }) => {
-  return (
-    <div>
-      <Header />
-      <div className="container mt-5">
-        <div className="row">
-          {pizzas.map(pizza => (
-            <div key={pizza.id} className="col-md-4 mb-4">
-              <CardPizza pizza={pizza} onAddToCart={handleAddToCart} />
+const Home = () => {
+    const [pizzas, setPizzas] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/api/pizzas')
+            .then(response => response.json())
+            .then(data => setPizzas(data))
+            .catch(error => console.error('Error fetching pizzas:', error));
+    }, []);
+
+    return (
+        <div>
+            <h1>Lista de Pizzas</h1>
+            <div className="pizza-list">
+                {pizzas.map(pizza => (
+                    <div key={pizza.id} className="pizza-card">
+                        <img src={pizza.img} alt={pizza.name} />
+                        <h2>{pizza.name}</h2>
+                        <p>{pizza.desc}</p>
+                        <p><strong>Precio:</strong> ${pizza.price}</p>
+                        <p><strong>Ingredientes:</strong> {pizza.ingredients.join(', ')}</p>
+                    </div>
+                ))}
             </div>
-          ))}
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default Home;
