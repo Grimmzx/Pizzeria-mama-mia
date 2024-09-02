@@ -4,24 +4,35 @@ import { useParams } from 'react-router-dom';
 const Pizza = () => {
   const { id } = useParams(); 
   const [pizza, setPizza] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchPizza = async () => {
       try {
         const response = await fetch(`http://localhost:5000/api/pizzas/${id}`);
+        if (!response.ok) {
+          throw new Error("Error al obtener la pizza");
+        }
         const data = await response.json();
-        console.log("Pizza data:", data); 
         setPizza(data);
       } catch (error) {
         console.error("Error fetching pizza:", error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchPizza();
   }, [id]);
 
-  if (!pizza) {
+  if (loading) {
     return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
   }
 
   return (
@@ -35,8 +46,8 @@ const Pizza = () => {
           <li key={index}>{ingredient}</li>
         ))}
       </ul>
-      <h2>Precio: ${pizza.price}</h2>
-      <button>Añadir al carrito</button>
+      <h2>Precio: ${pizza.price.toLocaleString()}</h2>
+      <button onClick={() => alert('Añadido al carrito!')}>Añadir al carrito</button>
     </div>
   );
 };
