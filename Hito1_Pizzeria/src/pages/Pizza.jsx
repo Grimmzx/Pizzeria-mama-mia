@@ -35,6 +35,12 @@ const Pizza = () => {
     return <div>Error: {error}</div>;
   }
 
+  const handleAddToCart = () => {
+   
+    console.log('Pizza añadida al carrito:', pizza);
+  
+  };
+
   return (
     <div style={{ padding: '20px', textAlign: 'center' }}>
       <h1>{pizza.name}</h1>
@@ -47,7 +53,7 @@ const Pizza = () => {
         ))}
       </ul>
       <h2>Precio: ${pizza.price.toLocaleString()}</h2>
-      <button onClick={() => alert('Añadido al carrito!')}>Añadir al carrito</button>
+      <button onClick={handleAddToCart}>Añadir al carrito</button>
     </div>
   );
 };
