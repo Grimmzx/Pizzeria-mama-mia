@@ -1,7 +1,6 @@
 import React from 'react';
 
-const Cart = ({ cart, handleIncrement, handleDecrement }) => {
-  
+const Cart = ({ cart = [], handleIncrement, handleDecrement }) => {
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (

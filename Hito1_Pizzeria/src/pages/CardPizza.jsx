@@ -15,7 +15,7 @@ const CardPizza = ({ pizza, onAddToCart }) => {
         <p className="card-text"><strong>Precio:</strong> ${pizza.price.toLocaleString()}</p>
         <div className="d-flex justify-content-between">
           <button className="btn btn-primary">Ver más 🍕</button>
-                                                    {/* se agrega  evento */}
+                                              
           <button className="btn btn-secondary" onClick={() => onAddToCart(pizza)}>Añadir 🛒</button>
         </div>
       </div>
