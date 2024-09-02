@@ -21,6 +21,9 @@ const Navbar = ({ total }) => {
             <Link className="nav-link" to="/register">🔐 Register</Link>
           </li>
           <li className="nav-item">
+            <Link className="nav-link" to="/profile">👤 Profile</Link>
+          </li>
+          <li className="nav-item">
             <Link className="nav-link" to="/cart">🛒 Total de carrito: ${total ? total.toLocaleString() : '0.00'}</Link>
           </li>
         </ul>
