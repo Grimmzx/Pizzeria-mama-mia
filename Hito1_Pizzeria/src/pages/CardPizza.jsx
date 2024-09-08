@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useCart } from '../components/CartContext';  
 import '../assets/styles/CardPizza.css'; 
 
-const CardPizza = ({ pizza, onAddToCart }) => {
+const CardPizza = ({ pizza }) => {
+  const { addItemToCart } = useCart();  
+
   return (
     <div className="card pizza-card">
       <img src={pizza.img} className="card-img-top" alt={pizza.name} />
@@ -20,7 +23,7 @@ const CardPizza = ({ pizza, onAddToCart }) => {
           <Link to={`/pizza/${pizza.id}`} className="btn btn-primary">
             Ver más 👀
           </Link>
-          <button className="btn btn-danger" onClick={() => onAddToCart(pizza)}>
+          <button className="btn btn-danger" onClick={() => addItemToCart(pizza)}>
             Añadir 🛒
           </button>
         </div>

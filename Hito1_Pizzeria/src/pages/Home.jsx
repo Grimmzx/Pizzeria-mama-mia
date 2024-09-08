@@ -6,17 +6,11 @@ const Home = () => {
     const [pizzas, setPizzas] = useState([]);
 
     useEffect(() => {
-
         fetch('http://localhost:5000/api/pizzas')
             .then(response => response.json())
             .then(data => setPizzas(data))
             .catch(error => console.error('Error fetching pizzas:', error));
     }, []);
-
-    const handleAddToCart = (pizza) => {
-        console.log(`${pizza.name} añadido al carrito.`);
-
-    };
 
     return (
         <div>
@@ -26,7 +20,6 @@ const Home = () => {
                     <CardPizza 
                         key={pizza.id} 
                         pizza={pizza} 
-                        onAddToCart={handleAddToCart} 
                     />
                 ))}
             </div>

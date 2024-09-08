@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useCart } from './CartContext';  
 import '../assets/styles/Navbar.css';
 
-const Navbar = ({ total }) => {
+const Navbar = () => {
+  const { totalPrice } = useCart(); 
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link className="navbar-brand" to="/">Pizzería Mamma Mía!</Link>
@@ -24,7 +27,7 @@ const Navbar = ({ total }) => {
             <Link className="nav-link" to="/profile">👤 Profile</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/cart">🛒 Total de carrito: ${total ? total.toLocaleString() : '0.00'}</Link>
+            <Link className="nav-link" to="/cart">🛒 Total de carrito: ${totalPrice.toLocaleString()}</Link>
           </li>
         </ul>
       </div>

@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useCart } from '../components/CartContext'; 
+import '../assets/styles/Pizza.css';
 
 const Pizza = () => {
   const { id } = useParams(); 
+  const { addItemToCart } = useCart();  
   const [pizza, setPizza] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -36,15 +39,14 @@ const Pizza = () => {
   }
 
   const handleAddToCart = () => {
-   
+    addItemToCart(pizza); 
     console.log('Pizza añadida al carrito:', pizza);
-  
   };
 
   return (
-    <div style={{ padding: '20px', textAlign: 'center' }}>
+    <div className="pizza-container">
       <h1>{pizza.name}</h1>
-      <img src={pizza.img} alt={pizza.name} style={{ width: '300px', height: 'auto' }} />
+      <img src={pizza.img} alt={pizza.name} />
       <p>{pizza.desc}</p>
       <h3>Ingredientes</h3>
       <ul>

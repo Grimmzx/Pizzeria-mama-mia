@@ -19,8 +19,8 @@
   }
   
   .pizza-card:hover {
-    transform: translateY(-8px); /* Eleva la tarjeta */
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Aumenta la sombra */
+    transform: translateY(-8px); 
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); 
   }
   
   .pizza-card img {
@@ -44,4 +44,5 @@
     display: block;
     margin-bottom: 5px;
   }
+  
   
