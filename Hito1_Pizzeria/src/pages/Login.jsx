@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useUser } from '../components/UserContext'; 
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const { login } = useUser(); 
+  const navigate = useNavigate(); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+ 
     if (!email || !password) {
       setError('Todos los campos son obligatorios.');
       alert('Todos los campos son obligatorios.');
@@ -17,8 +23,18 @@ const Login = () => {
       alert('La contraseña debe tener al menos 6 caracteres.');
       return;
     }
+
+    //similar login y obtener token
+    const fakeToken = '1234567890abcdef';
+
+
+    login(fakeToken);
+
+
     setError('');
     alert('Autenticación exitosa');
+
+    navigate('/');
   };
 
   return (

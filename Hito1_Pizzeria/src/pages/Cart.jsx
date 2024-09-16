@@ -1,13 +1,9 @@
 import React from 'react';
-import { useCart } from '../components/CartContext'; 
-
+import { useCart } from '../components/CartContext';  
+import { useUser } from '../components/UserContext';
 const Cart = () => {
-  const {
-    cartItems,       
-    incrementItemQuantity,   
-    decrementItemQuantity,   
-    totalPrice              
-  } = useCart();
+  const { cartItems, incrementItemQuantity, decrementItemQuantity, totalPrice } = useCart();
+  const { token } = useUser();  
 
   return (
     <div className="container mt-5">
@@ -29,7 +25,7 @@ const Cart = () => {
         ))}
       </ul>
       <h3>Total de la compra: ${totalPrice.toLocaleString()}</h3>
-      <button className="btn btn-primary">Pagar</button>
+      <button className="btn btn-primary" disabled={!token}>Pagar</button> {/* Deshabilitar si el token es false */}
     </div>
   );
 };

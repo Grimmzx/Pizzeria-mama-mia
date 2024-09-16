@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useCart } from './CartContext';  
-import '../assets/styles/Navbar.css';
+import { useUser } from '../components/UserContext';
+import { useCart } from '../components/CartContext';  
+import '../assets/styles/Navbar.css'; 
 
 const Navbar = () => {
-  const { totalPrice } = useCart(); 
+  const { token, logout } = useUser();
+  const { totalPrice } = useCart();
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -17,15 +19,25 @@ const Navbar = () => {
           <li className="nav-item">
             <Link className="nav-link" to="/">🍕 Home</Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/login">🔐 Login</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/register">🔐 Register</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/profile">👤 Profile</Link>
-          </li>
+          {token ? (
+            <>
+              <li className="nav-item">
+                <Link className="nav-link" to="/profile">👤 Profile</Link>
+              </li>
+              <li className="nav-item">
+                <button className="nav-link btn btn-link" onClick={logout}>🔓 Logout</button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li className="nav-item">
+                <Link className="nav-link" to="/login">🔐 Login</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/register">🔐 Register</Link>
+              </li>
+            </>
+          )}
           <li className="nav-item">
             <Link className="nav-link" to="/cart">🛒 Total de carrito: ${totalPrice.toLocaleString()}</Link>
           </li>
