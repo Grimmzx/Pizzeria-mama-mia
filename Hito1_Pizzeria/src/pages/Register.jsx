@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useUser } from '../components/UserContext'; 
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -6,8 +8,13 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const { register } = useUser(); 
+  const navigate = useNavigate(); 
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+  
     if (!email || !password || !confirmPassword) {
       setError('Todos los campos son obligatorios.');
       alert('Todos los campos son obligatorios.');
@@ -23,8 +30,19 @@ const Register = () => {
       alert('Las contraseñas no coinciden.');
       return;
     }
-    setError('');
-    alert('Registro exitoso');
+
+    try {
+    
+      await register({ email, password });
+      
+      setError(''); 
+      alert('Registro exitoso');
+      navigate('/'); 
+    } catch (err) {
+    
+      setError('Error al registrarse. Verifica los datos ingresados.');
+      alert('Error al registrarse. Verifica los datos ingresados.');
+    }
   };
 
   return (

@@ -9,10 +9,10 @@ const Login = () => {
   const { login } = useUser(); 
   const navigate = useNavigate(); 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
- 
+  
     if (!email || !password) {
       setError('Todos los campos son obligatorios.');
       alert('Todos los campos son obligatorios.');
@@ -24,17 +24,18 @@ const Login = () => {
       return;
     }
 
-    //similar login y obtener token
-    const fakeToken = '1234567890abcdef';
+    try {
+     
+      await login({ email, password });
 
+      setError(''); 
+      alert('Autenticación exitosa');
+      navigate('/'); 
+    } catch (err) {
 
-    login(fakeToken);
-
-
-    setError('');
-    alert('Autenticación exitosa');
-
-    navigate('/');
+      setError('Error al iniciar sesión. Verifica tus credenciales.');
+      alert('Error al iniciar sesión. Verifica tus credenciales.');
+    }
   };
 
   return (
