@@ -1,9 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useCart } from '../components/CartContext';  
 import { useUser } from '../components/UserContext';
+
 const Cart = () => {
   const { cartItems, incrementItemQuantity, decrementItemQuantity, totalPrice } = useCart();
   const { token } = useUser();  
+  const [successMessage, setSuccessMessage] = useState(''); 
+  const handleCheckout = async () => {
+    if (!token) {
+      alert('Debes iniciar sesión para realizar la compra.');
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5000/api/checkouts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ cart: cartItems }), 
+      });
+
+      if (response.ok) {
+        setSuccessMessage('Compra realizada con éxito!');
+      
+      } else {
+        setSuccessMessage('Error al realizar la compra.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setSuccessMessage('Error al realizar la compra.');
+    }
+  };
 
   return (
     <div className="container mt-5">
@@ -25,7 +54,8 @@ const Cart = () => {
         ))}
       </ul>
       <h3>Total de la compra: ${totalPrice.toLocaleString()}</h3>
-      <button className="btn btn-primary" disabled={!token}>Pagar</button> {/* Deshabilitar si el token es false */}
+      <button className="btn btn-primary" onClick={handleCheckout} disabled={!token}>Pagar</button>
+      {successMessage && <div className="alert alert-success mt-3">{successMessage}</div>} 
     </div>
   );
 };

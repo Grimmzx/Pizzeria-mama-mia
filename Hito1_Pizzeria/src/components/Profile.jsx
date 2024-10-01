@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useUser } from '../components/UserContext'; 
 
 function Profile() {
-  const email = "prueba@prueba.com";
+  const { getProfile, logout } = useUser(); 
+  const [email, setEmail] = useState('');
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const userProfile = await getProfile(); 
+        setEmail(userProfile.email); 
+      } catch (error) {
+        console.error('Error obteniendo el perfil:', error);
+      }
+    };
+
+    fetchProfile();
+  }, [getProfile]);
 
   const handleLogout = () => {
-   
+    logout(); 
     console.log("Cerrando sesión...");
   };
 

@@ -8,6 +8,12 @@ const Navbar = () => {
   const { token, logout } = useUser();
   const { totalPrice } = useCart();
 
+  const handleLogout = () => {
+    if (window.confirm("¿Estás seguro de que quieres cerrar sesión?")) {
+      logout();
+    }
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link className="navbar-brand" to="/">Pizzería Mamma Mía!</Link>
@@ -25,7 +31,13 @@ const Navbar = () => {
                 <Link className="nav-link" to="/profile">👤 Profile</Link>
               </li>
               <li className="nav-item">
-                <button className="nav-link btn btn-link" onClick={logout}>🔓 Logout</button>
+                <button
+                  className="nav-link btn btn-link"
+                  onClick={handleLogout}
+                  aria-label="Cerrar sesión"
+                >
+                  🔓 Logout
+                </button>
               </li>
             </>
           ) : (
